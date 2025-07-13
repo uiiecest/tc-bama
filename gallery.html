@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Gallery | TCBAMA Old Boys Association</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background: #002244;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f5b400;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #f5b400;
+        }
+        main {
+            padding: 2rem;
+        }
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .gallery-header h2 {
+            font-size: 2rem;
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+        .filters {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .filters button {
+            background: #f5b400;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            margin: 0 0.5rem 0.8rem;
+            border-radius: 6px;
+            color: #003366;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .filters button:hover,
+        .filters button.active {
+            background: #e0a800;
+        }
+        .search-bar {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .search-bar input {
+            width: 60%;
+            max-width: 400px;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 34, 68, 0.7);
+            color: #fff;
+            width: 100%;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+        footer {
+            background: #002244;
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem;
+            margin-top: 2rem;
+        }
+        /* Modal Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+        .lightbox:target {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="TCBAMA Logo">
+        <h1>TCBAMA Old Boys</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="hall-of-fame.html"><i class="fas fa-award"></i> Hall of Fame</a></li>
+            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+            <li><a href="gallery.html" class="active"><i class="fas fa-images"></i> Gallery</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="gallery-header">
+        <h2>Photo Gallery</h2>
+        <p>Explore memories, reunions, events and achievements of TCBAMA Old Boys</p>
+    </div>
+    <div class="filters">
+        <button class="active" onclick="filterGallery('all')">All</button>
+        <button onclick="filterGallery('events')">Events</button>
+        <button onclick="filterGallery('reunions')">Reunions</button>
+        <button onclick="filterGallery('memories')">Memories</button>
+        <button onclick="filterGallery('awards')">Awards</button>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search photos..." onkeyup="searchGallery()">
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+        <!-- Sample Images -->
+        <div class="gallery-item events">
+            <a href="#img1"><img src="images/event1.jpg" alt="Annual Reunion"></a>
+            <div class="gallery-caption">Annual Reunion</div>
+        </div>
+        <div class="gallery-item reunions">
+            <a href="#img2"><img src="images/reunion1.jpg" alt="Old Boys Meet"></a>
+            <div class="gallery-caption">Old Boys Meet</div>
+        </div>
+        <div class="gallery-item memories">
+            <a href="#img3"><img src="images/memories1.jpg" alt="School Memories"></a>
+            <div class="gallery-caption">School Memories</div>
+        </div>
+        <div class="gallery-item awards">
+            <a href="#img4"><img src="images/award1.jpg" alt="Award Ceremony"></a>
+            <div class="gallery-caption">Award Ceremony</div>
+        </div>
+        <!-- Add more images as needed -->
+    </div>
+</main>
+
+<!-- Lightbox Modal -->
+<div id="img1" class="lightbox">
+    <img src="images/event1.jpg" alt="Annual Reunion">
+</div>
+<div id="img2" class="lightbox">
+    <img src="images/reunion1.jpg" alt="Old Boys Meet">
+</div>
+<div id="img3" class="lightbox">
+    <img src="images/memories1.jpg" alt="School Memories">
+</div>
+<div id="img4" class="lightbox">
+    <img src="images/award1.jpg" alt="Award Ceremony">
+</div>
+
+<footer>
+    <p>&copy; 2025 TCBAMA Old Boys Association. All rights reserved.</p>
+</footer>
+
+<script>
+    function filterGallery(category) {
+        const items = document.querySelectorAll('.gallery-item');
+        const buttons = document.querySelectorAll('.filters button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        items.forEach(item => {
+            if (category === 'all' || item.classList.contains(category)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function searchGallery() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+            const caption = item.querySelector('.gallery-caption').textContent.toLowerCase();
+            if (caption.includes(input)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>
