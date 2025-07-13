@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>News | TCBAMA Old Boys Association</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(to right, #003366, #004080);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #002244;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f5b400;
+        }
+        nav {
+            display: flex;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #f5b400;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        main h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1.2s ease;
+        }
+        main p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.5s ease;
+        }
+        .subscribe-box {
+            background: #fff;
+            color: #333;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+            animation: zoomIn 1.8s ease;
+        }
+        .subscribe-box h2 {
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+        .subscribe-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .subscribe-box input[type="email"] {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .subscribe-box button {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: #f5b400;
+            color: #003366;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .subscribe-box button:hover {
+            background: #e0a800;
+        }
+        footer {
+            background: #002244;
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="TCBAMA Logo">
+        <h1>TCBAMA Old Boys</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="hall-of-fame.html"><i class="fas fa-award"></i> Hall of Fame</a></li>
+            <li><a href="news.html" class="active"><i class="fas fa-newspaper"></i> News</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>News Coming Soon 🚀</h1>
+    <p>Stay tuned! Our latest updates and stories will be available soon.<br>Sign up to be the first to know when it goes live.</p>
+    <div class="subscribe-box">
+        <h2>Notify Me</h2>
+        <form action="https://formspree.io/f/xzzvpevj" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2025 TCBAMA Old Boys Association. All rights reserved.</p>
+</footer>
+</body>
+</html>
