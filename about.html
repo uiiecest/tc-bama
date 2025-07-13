@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>About Us | TCBAMA Old Boys Association</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.png" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(90deg, #003366 0%, #004080 100%);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #fff;
+            z-index: 1100;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle.active {
+            transform: rotate(90deg);
+        }
+
+        nav {
+            display: flex;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #f5b400;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 260px;
+                height: 100%;
+                background: #003366;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem 1.5rem;
+                transition: right 0.4s ease;
+                box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+            }
+            nav.open {
+                right: 0;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .hero {
+            background: url('bg-hero.png') no-repeat center center/cover;
+            color: #fff;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #003366;
+            font-weight: 700;
+        }
+
+        .story, .mission-vision, .values {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .story p, .mission-vision p {
+            max-width: 900px;
+            margin: auto;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .value-card {
+            background: #eaf3fc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-card i {
+            font-size: 2rem;
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #003366;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #f5b400;
+            border-radius: 50%;
+            border: 3px solid #003366;
+            left: calc(50% - 7.5px);
+        }
+
+        .timeline-item h4 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 8px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 2rem;
+                text-align: left;
+            }
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0;
+            }
+            .timeline-item::after {
+                left: 0;
+                transform: translateX(0);
+            }
+        }
+
+        .join-btn {
+            background: #003366;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .join-btn:hover {
+            background: #00509e;
+            transform: translateY(-2px);
+        }
+.newsletter-signup {
+    background: #003366;
+    color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 10px;
+}
+.newsletter-signup h2 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+.newsletter-signup p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.newsletter-form input[type="text"],
+.newsletter-form input[type="email"] {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    max-width: 90%;
+}
+.newsletter-form button {
+    background: #f5b400;
+    color: #003366;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.newsletter-form button:hover {
+    background: #e0a800;
+}
+.main-footer {
+    background: #003366;
+    color: #fff;
+    padding: 3rem 2rem 1rem 2rem;
+}
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+.footer-column h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #f5b400;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+.footer-column p, .footer-column ul {
+    margin-bottom: 0.8rem;
+}
+.footer-column a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-column a:hover {
+    color: #f5b400;
+}
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+.social-icons a {
+    margin-right: 0.8rem;
+    font-size: 1.3rem;
+    color: #f0f0f0;
+    transition: color 0.3s ease;
+}
+.social-icons a:hover {
+    color: #f5b400;
+}
+
+.footer-credits {
+    background: #001f4d;
+    color: #ddd;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+}
+.footer-credits strong {
+    color: #f5b400;
+}
+        @keyframes fadeInDown {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="TCBAMA Logo">
+        <h1>TCBAMA Old Boys</h1>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    <nav id="nav-menu">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="alumni.html"><i class="fas fa-award"></i> Hall of Fame</a></li>
+            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+            <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>About TCBAMA Old Boys Association</h1>
+</section>
+
+<section class="section story" data-aos="fade-up">
+    <h2>Our Story</h2>
+    <p>
+        Founded in the early 1980s, TCBAMA Old Boys Association has become a powerful network of alumni dedicated to supporting our alma mater, fostering unity, and empowering future generations.
+    </p>
+</section>
+
+<section class="section mission-vision" data-aos="fade-up">
+    <h2>Mission & Vision</h2>
+    <p><strong>Mission:</strong> To unite alumni for mentorship, community development, and lifelong support to our alma mater.</p>
+    <p><strong>Vision:</strong> To be a leading alumni association inspiring excellence and positive change globally.</p>
+</section>
+
+<section class="section values" data-aos="fade-up">
+    <h2>Our Core Values</h2>
+    <div class="values-grid">
+        <div class="value-card">
+            <i class="fas fa-handshake"></i>
+            <h3>Unity</h3>
+            <p>Bringing generations together in the spirit of brotherhood.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-star"></i>
+            <h3>Excellence</h3>
+            <p>Striving for success in all endeavors and inspiring others.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-heart"></i>
+            <h3>Service</h3>
+            <p>Giving back to the community and alma mater through impactful projects.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-balance-scale"></i>
+            <h3>Integrity</h3>
+            <p>Operating with honesty, transparency, and strong ethics.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section timeline" data-aos="fade-up">
+    <h2>Our Journey</h2>
+    <div class="timeline-item left">
+        <h4>1983 - First Reunion</h4>
+        <p>The association’s first major gathering of alumni.</p>
+    </div>
+    <div class="timeline-item right">
+        <h4>1995 - Scholarship Program</h4>
+        <p>Launched scholarships to support underprivileged students.</p>
+    </div>
+    <div class="timeline-item left">
+        <h4>2010 - Infrastructure Projects</h4>
+        <p>Contributed to building classrooms and facilities.</p>
+    </div>
+    <div class="timeline-item right">
+        <h4>2020 - Digital Transformation</h4>
+        <p>Created online platforms to connect alumni worldwide.</p>
+    </div>
+</section>
+
+<section class="section" data-aos="fade-up">
+    <h2>Join Us Today</h2>
+    <p>Become part of a network that inspires, empowers, and gives back. Together, we preserve our legacy and create a brighter future.</p>
+    <a href="https://forms.gle/your-google-form-link" target="_blank" class="join-btn">Join Now</a>
+</section>
+
+<section class="section newsletter-signup" data-aos="fade-up">
+    <h2>Stay Connected</h2>
+    <p>Subscribe to our newsletter and never miss an update from TCBAMA Old Boys Association.</p>
+    <form class="newsletter-form" action="https://formspree.io/f/xzzvpevj" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email Address" required>
+        <button type="submit">Subscribe</button>
+    </form>
+</section>
+
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <!-- Contact Info -->
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:info@tcbamaoldboys.org">info@tcbamaoldboys.org</a></p>
+            <p>Phone: <a href="tel:+2348000000000">+234 800 000 0000</a></p>
+            <p>Address: TCBAMA Secretariat, Maiduguri, Nigeria</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="alumni.html">Hall of Fame</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        
+        <!-- Social Media -->
+        <div class="footer-column">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Credits -->
+<div class="footer-credits">
+    <p>Website designed and developed by <strong>IAB Digital & AI Hub LTD</strong></p>
+</div>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        menuToggle.classList.toggle('active');
+        menuToggle.innerHTML = navMenu.classList.contains('open')
+            ? '<i class="fas fa-times"></i>'
+            : '<i class="fas fa-bars"></i>';
+    });
+</script>
+</body>
+</html>
